@@ -36,6 +36,65 @@ var template2 = React.createElement(
     )
 );
 
-var approot = document.getElementById('app');
+var challange = {
+    numbers: [1, 2, 3, 5, 6, 4],
+    multiplyby: 2,
+    multiplier: function multiplier() {
+        var _this = this;
 
-ReactDOM.render(template2, approot);
+        return this.numbers.map(function (x) {
+            return x * _this.multiplyby;
+        });
+    }
+};
+
+var count = 0;
+var addone = function addone() {
+    count++;
+    counterfunc();
+    console.log("add one");
+};
+var minus = function minus() {
+    count--;
+    counterfunc();
+    console.log("Minus One");
+};
+var Reset = function Reset() {
+    count = 0;
+    counterfunc();
+    console.log("Reset");
+};
+var approot = document.getElementById('app');
+var counterfunc = function counterfunc() {
+    var template3 = React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            "Count: ",
+            count
+        ),
+        React.createElement(
+            "button",
+            { onClick: addone },
+            "+1"
+        ),
+        React.createElement("br", null),
+        React.createElement(
+            "button",
+            { onClick: minus },
+            "-1"
+        ),
+        React.createElement("br", null),
+        React.createElement(
+            "button",
+            { onClick: Reset },
+            "Reset"
+        )
+    );
+
+    ReactDOM.render(template3, approot);
+};
+
+counterfunc();
