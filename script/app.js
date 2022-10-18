@@ -1,7 +1,13 @@
 "use strict";
 
 console.log("App is running");
+var approot = document.getElementById('app');
 
+var user = {
+    title: "Ejaz",
+    age: "21",
+    options: []
+};
 var template = React.createElement(
     "div",
     null,
@@ -22,7 +28,7 @@ var template2 = React.createElement(
     React.createElement(
         "h1",
         null,
-        "Ejaz"
+        "Ejas"
     ),
     React.createElement(
         "p",
@@ -35,66 +41,68 @@ var template2 = React.createElement(
         "Karachi"
     )
 );
-
-var challange = {
-    numbers: [1, 2, 3, 5, 6, 4],
-    multiplyby: 2,
-    multiplier: function multiplier() {
-        var _this = this;
-
-        return this.numbers.map(function (x) {
-            return x * _this.multiplyby;
-        });
+var removeItem = function removeItem() {
+    if (user.options) {
+        user.options.splice(0, user.options.length);
+        renderfun();
     }
 };
+var formsubmitted = function formsubmitted(e) {
 
-var count = 0;
-var addone = function addone() {
-    count++;
-    counterfunc();
-    console.log("add one");
+    e.preventDefault();
+    var value = e.target.elements.options.value;
+    if (value) {
+
+        user.options.push(value);
+        e.target.elements.options.value = "";
+        renderfun();
+    } else {
+        alert("Please Enter the Value");
+    }
 };
-var minus = function minus() {
-    count--;
-    counterfunc();
-    console.log("Minus One");
-};
-var Reset = function Reset() {
-    count = 0;
-    counterfunc();
-    console.log("Reset");
-};
-var approot = document.getElementById('app');
-var counterfunc = function counterfunc() {
+var renderfun = function renderfun() {
     var template3 = React.createElement(
         "div",
         null,
         React.createElement(
             "h1",
             null,
-            "Count: ",
-            count
+            "Indecession App"
+        ),
+        React.createElement(
+            "p",
+            null,
+            "Your Tasks"
+        ),
+        React.createElement(
+            "form",
+            { onSubmit: formsubmitted },
+            React.createElement("input", { type: "text", name: "options" }),
+            React.createElement("br", null),
+            React.createElement(
+                "button",
+                null,
+                "Add task"
+            )
         ),
         React.createElement(
             "button",
-            { onClick: addone },
-            "+1"
+            { onClick: removeItem },
+            "Remove All"
         ),
-        React.createElement("br", null),
         React.createElement(
-            "button",
-            { onClick: minus },
-            "-1"
-        ),
-        React.createElement("br", null),
-        React.createElement(
-            "button",
-            { onClick: Reset },
-            "Reset"
+            "ol",
+            null,
+            user.options.map(function (x) {
+                return React.createElement(
+                    "li",
+                    null,
+                    x
+                );
+            })
         )
     );
 
     ReactDOM.render(template3, approot);
 };
-
-counterfunc();
+renderfun();

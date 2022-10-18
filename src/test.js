@@ -1,21 +1,3 @@
-console.log("App is running");
-
-var template = (
-
-    <div>
-
-        <h1>Hello World</h1>
-        <p>Hello</p>
-    </div>
-);
-var template2 = (
-
-    <div>
-        <h1>Ejaz</h1>
-        <p>23</p>
-        <p>Karachi</p>
-    </div>
-);
 
 const challange = {
     numbers:[1,2,3,5,6,4],
@@ -54,11 +36,7 @@ let counterfunc = ()=>{
         </div>
     );
 
-    ReactDOM.render(template3, approot)
+    // ReactDOM.render(template3, approot)
 }
-
-
-
-
 
 counterfunc();
