@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -8,178 +8,83 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var IndecessionApp = function (_React$Component) {
-    _inherits(IndecessionApp, _React$Component);
+var Toogle = function (_React$Component) {
+    _inherits(Toogle, _React$Component);
 
-    function IndecessionApp() {
-        _classCallCheck(this, IndecessionApp);
+    function Toogle() {
+        _classCallCheck(this, Toogle);
 
-        return _possibleConstructorReturn(this, (IndecessionApp.__proto__ || Object.getPrototypeOf(IndecessionApp)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Toogle.__proto__ || Object.getPrototypeOf(Toogle)).call(this));
+
+        _this.tooglefun = _this.tooglefun.bind(_this);
+        _this.state = {
+            visibility: false
+        };
+        return _this;
     }
 
-    _createClass(IndecessionApp, [{
-        key: "render",
-        value: function render() {
-            var title = "Indeccesion App";
-            var subtitle = "Put Your Life in Hands of Computer";
-            var options = ["Option1", "Option2", "Option3"];
+    _createClass(Toogle, [{
+        key: 'tooglefun',
+        value: function tooglefun() {
 
-            return React.createElement(
-                "div",
-                null,
-                React.createElement(Header, { title: title, subtitle: subtitle }),
-                React.createElement(Action, null),
-                React.createElement(Options, { option: options }),
-                React.createElement(Addoptions, null)
-            );
+            if (this.state.visibility) {
+                this.setState(function () {
+                    return {
+                        visibility: false
+                    };
+                });
+            } else {
+                this.setState(function () {
+                    return {
+                        visibility: true
+                    };
+                });
+            }
         }
-    }]);
-
-    return IndecessionApp;
-}(React.Component);
-
-var Header = function (_React$Component2) {
-    _inherits(Header, _React$Component2);
-
-    function Header() {
-        _classCallCheck(this, Header);
-
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-    }
-
-    _createClass(Header, [{
-        key: "render",
+    }, {
+        key: 'render',
         value: function render() {
             return React.createElement(
-                "div",
+                'div',
                 null,
                 React.createElement(
-                    "h1",
-                    null,
-                    this.props.title
+                    'button',
+                    { onClick: this.tooglefun },
+                    'Show Details'
                 ),
-                React.createElement(
-                    "h2",
+                this.state.visibility ? React.createElement(
+                    'h1',
                     null,
-                    this.props.subtitle
-                )
+                    'This is Toogle'
+                ) : React.createElement('h1', null)
             );
         }
     }]);
 
-    return Header;
+    return Toogle;
 }(React.Component);
 
-var Action = function (_React$Component3) {
-    _inherits(Action, _React$Component3);
+// var approot = document.getElementById('app');
 
-    function Action() {
-        _classCallCheck(this, Action);
+// let tooglefunc =()=>{
+// let detail = document.getElementById('toogle');
+// let btn = document.getElementById('btn');
+// if(detail.style.display === "block"){
+//     detail.style.display = "none"
+//     btn.innerText = "Show Details"
+// }else{
+//     btn.innerText = "Hide Details"
+//     detail.style.display = "block"
+// }
+// }
 
-        return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
-    }
+// let toogle = (
+//     <div>
+//     <h1>Click on the Button</h1>
+//     <button id="btn" onClick={tooglefunc}>Show Details</button>
+//     <p id="toogle">Here are the details</p>
+//     </div>
+// )
 
-    _createClass(Action, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "div",
-                null,
-                React.createElement(
-                    "button",
-                    null,
-                    "What Should I do?"
-                )
-            );
-        }
-    }]);
 
-    return Action;
-}(React.Component);
-
-var Options = function (_React$Component4) {
-    _inherits(Options, _React$Component4);
-
-    function Options() {
-        _classCallCheck(this, Options);
-
-        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
-    }
-
-    _createClass(Options, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "div",
-                null,
-                React.createElement(
-                    "h3",
-                    null,
-                    "Options are here"
-                ),
-                React.createElement(
-                    "h3",
-                    null,
-                    this.props.option.length
-                ),
-                React.createElement(Option, null)
-            );
-        }
-    }]);
-
-    return Options;
-}(React.Component);
-
-var Option = function (_React$Component5) {
-    _inherits(Option, _React$Component5);
-
-    function Option() {
-        _classCallCheck(this, Option);
-
-        return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
-    }
-
-    _createClass(Option, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "div",
-                null,
-                React.createElement(
-                    "h3",
-                    null,
-                    "Option component are here"
-                )
-            );
-        }
-    }]);
-
-    return Option;
-}(React.Component);
-
-var Addoptions = function (_React$Component6) {
-    _inherits(Addoptions, _React$Component6);
-
-    function Addoptions() {
-        _classCallCheck(this, Addoptions);
-
-        return _possibleConstructorReturn(this, (Addoptions.__proto__ || Object.getPrototypeOf(Addoptions)).apply(this, arguments));
-    }
-
-    _createClass(Addoptions, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "div",
-                null,
-                React.createElement("input", { type: "text", placeholder: "Add Your Options here " })
-            );
-        }
-    }]);
-
-    return Addoptions;
-}(React.Component);
-
-var jsx = React.createElement("div", null);
-
-ReactDOM.render(React.createElement(IndecessionApp, null), document.getElementById("app"));
+ReactDOM.render(React.createElement(Toogle, null), document.getElementById('app'));
