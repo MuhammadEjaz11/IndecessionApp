@@ -41,11 +41,14 @@ class IndecessionApp extends React.Component {
         console.log("fetching")
         const json = localStorage.getItem("options")
         const option = JSON.parse(json)
-        this.setState(()=>{
-            return{
-                options: option 
-            }
-        })
+        if(option){
+
+            this.setState(()=>{
+                return{
+                    options: option 
+                }
+            })
+        }
     }
     componentDidUpdate(_prevProps, prevState){
         console.log("update")

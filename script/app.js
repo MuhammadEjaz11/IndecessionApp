@@ -8,68 +8,256 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Counter = function (_React$Component) {
-    _inherits(Counter, _React$Component);
+var IndecessionApp = function (_React$Component) {
+    _inherits(IndecessionApp, _React$Component);
 
-    function Counter(props) {
-        _classCallCheck(this, Counter);
+    function IndecessionApp(props) {
+        _classCallCheck(this, IndecessionApp);
 
-        var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (IndecessionApp.__proto__ || Object.getPrototypeOf(IndecessionApp)).call(this, props));
 
-        _this.addone = _this.addone.bind(_this);
-        _this.minusone = _this.minusone.bind(_this);
-        _this.reset = _this.reset.bind(_this);
+        _this.handlepick = _this.handlepick.bind(_this);
+        _this.removeAll = _this.removeAll.bind(_this);
+        _this.addoption = _this.addoption.bind(_this);
+        _this.removeItem = _this.removeItem.bind(_this);
         _this.state = {
-            count: 0
+            options: []
         };
         return _this;
     }
 
-    _createClass(Counter, [{
-        key: "addone",
-        value: function addone() {
-            console.log("addone");
+    _createClass(IndecessionApp, [{
+        key: "handlepick",
+        value: function handlepick() {
+            var number = Math.floor(Math.random() * this.state.options.length);
+            alert(this.state.options[number]);
+        }
+    }, {
+        key: "removeAll",
+        value: function removeAll() {
+            this.setState(function () {
+                return { options: [] };
+            });
+        }
+    }, {
+        key: "addoption",
+        value: function addoption(value) {
+            if (this.state.options.indexOf(value) > -1) {
+                return alert("This options is Already Exist");
+            }
             this.setState(function (prevState) {
                 return {
-                    count: prevState.count + 1
+                    options: prevState.options.concat([value])
                 };
             });
         }
     }, {
-        key: "minusone",
-        value: function minusone() {
-            console.log("minusone");
+        key: "removeItem",
+        value: function removeItem(removeValue) {
+
             this.setState(function (prevState) {
                 return {
-                    count: prevState.count - 1
-                };
-            });
-        }
-    }, {
-        key: "reset",
-        value: function reset() {
-            console.log("reset");
-            this.setState(function (prevState) {
-                return {
-                    count: 0
+
+                    options: prevState.options.filter(function (x) {
+                        return removeValue !== x;
+                    })
                 };
             });
         }
     }, {
         key: "componentDidMount",
         value: function componentDidMount() {
-            var count1 = localStorage.getItem('count');
-            var number = parseInt(count1);
-            this.setState(function () {
-                return { count: number };
-            });
+            console.log("fetching");
+            var json = localStorage.getItem("options");
+            var option = JSON.parse(json);
+            if (option) {
+
+                this.setState(function () {
+                    return {
+                        options: option
+                    };
+                });
+            }
         }
     }, {
         key: "componentDidUpdate",
-        value: function componentDidUpdate() {
-            var count = this.state.count;
-            console.log(count);
-            localStorage.setItem("count", count);
+        value: function componentDidUpdate(_prevProps, prevState) {
+            console.log("update");
+            if (prevState.options.length !== this.state.options.length) {
+                var json = JSON.stringify(this.state.options);
+                localStorage.setItem("options", json);
+            }
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var title = "Indeccesion App";
+            var subtitle = "Put Your Life in Hands of Computer";
+            // const options = ["Option1","Option2","Option3"];
+
+
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(Header, { title: title, subtitle: subtitle }),
+                React.createElement(Action, { handPick: this.handlepick, option: this.state.options.length }),
+                React.createElement(Options, { removeItem: this.removeItem, removeAll: this.removeAll, option: this.state.options }),
+                React.createElement(Addoptions, { addoption: this.addoption })
+            );
+        }
+    }]);
+
+    return IndecessionApp;
+}(React.Component);
+
+// class Header extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <h1>{this.props.title}</h1>
+//                 <h2>{this.props.subtitle}</h2>
+//             </div>
+//         )
+//     }
+// }
+
+
+var Header = function Header(props) {
+    return React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            props.title
+        ),
+        React.createElement(
+            "h2",
+            null,
+            props.subtitle
+        )
+    );
+};
+
+// class Action extends React.Component {
+//     // handlepick(){
+//     //     alert("HandlePick")
+//     // }
+//     render() {
+//         return (
+//             <div>
+//                 <button onClick={this.props.handPick} disabled={!this.props.option}>What Should I do?</button>
+//             </div>
+//         )
+//     }
+// }
+var Action = function Action(props) {
+    return React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "button",
+            { onClick: props.handPick, disabled: !props.option },
+            "What Should I do?"
+        )
+    );
+};
+
+// class Options extends React.Component {
+
+//     render() {
+//         return (
+//             <div>
+//                 <button onClick={this.props.removeAll}>Remove All</button>
+//                 <h3>Options are here</h3>
+//                 <h3>{this.props.option.map((option)=>{return <p key={option}>{option}</p>})}</h3>
+//                 <Option/>
+//             </div>
+//         )
+//     }
+// }
+var Options = function Options(props) {
+    return React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "button",
+            { onClick: props.removeAll },
+            "Remove All"
+        ),
+        React.createElement(
+            "h3",
+            null,
+            "Options are here"
+        ),
+        React.createElement(
+            "h3",
+            null,
+            props.option.map(function (option) {
+                return React.createElement(
+                    "p",
+                    { key: option },
+                    option,
+                    " ",
+                    React.createElement(
+                        "button",
+                        { onClick: function onClick(_e) {
+                                props.removeItem(option);
+                            } },
+                        "Remove"
+                    )
+                );
+            })
+        ),
+        React.createElement(Option, null)
+    );
+};
+// class Option extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <h3>Option component are here</h3>
+
+//             </div>
+//         )
+//     }
+// }
+var Option = function Option() {
+    return React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h3",
+            null,
+            "Option component are here"
+        )
+    );
+};
+
+var Addoptions = function (_React$Component2) {
+    _inherits(Addoptions, _React$Component2);
+
+    function Addoptions(props) {
+        _classCallCheck(this, Addoptions);
+
+        var _this2 = _possibleConstructorReturn(this, (Addoptions.__proto__ || Object.getPrototypeOf(Addoptions)).call(this, props));
+
+        _this2.handleAddoption = _this2.handleAddoption.bind(_this2);
+
+        return _this2;
+    }
+
+    _createClass(Addoptions, [{
+        key: "handleAddoption",
+        value: function handleAddoption(e) {
+            e.preventDefault();
+            var value = e.target.elements.options.value.trim();
+            if (value) {
+                this.props.addoption(value);
+                e.target.elements.options.value = "";
+            } else {
+                alert("Please Enter the Valid Value");
+            }
         }
     }, {
         key: "render",
@@ -78,74 +266,23 @@ var Counter = function (_React$Component) {
                 "div",
                 null,
                 React.createElement(
-                    "h1",
-                    null,
-                    "Counter: ",
-                    this.state.count,
-                    " "
-                ),
-                React.createElement(
-                    "button",
-                    { onClick: this.addone },
-                    "+1"
-                ),
-                React.createElement(
-                    "button",
-                    { onClick: this.minusone },
-                    "-1"
-                ),
-                React.createElement(
-                    "button",
-                    { onClick: this.reset },
-                    "Reset"
+                    "form",
+                    { action: "", onSubmit: this.handleAddoption },
+                    React.createElement("input", { name: "options", type: "text", placeholder: "Add Your Options here " }),
+                    " ",
+                    React.createElement(
+                        "button",
+                        null,
+                        "Add Option"
+                    )
                 )
             );
         }
     }]);
 
-    return Counter;
+    return Addoptions;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Counter, null), document.getElementById("app"));
+var jsx = React.createElement("div", null);
 
-// const challange = {
-//     numbers:[1,2,3,5,6,4],
-//     multiplyby: 2,
-//     multiplier(){ return this.numbers.map((x)=> x * this.multiplyby)  
-//     }
-// }
-
-// let count = 0;
-// let addone = ()=>{
-//     count++
-//     counterfunc();
-//     console.log("add one")
-// }
-// let minus = ()=>{
-//     count--
-//     counterfunc();
-//     console.log("Minus One")
-// }
-// let Reset = ()=>{
-//     count=0
-//     counterfunc();
-//     console.log("Reset")
-// }
-// var approot = document.getElementById('app');
-// let counterfunc = ()=>{
-//     var template3 = (
-
-//         <div>
-//            <h1>Count: {count}</h1>
-//            <button onClick={addone}>+1</button> 
-//            <br/>
-//            <button onClick={minus}>-1</button> 
-//            <br/>
-//            <button onClick={Reset}>Reset</button>
-//         </div>
-//     );
-
-//     ReactDOM.render(template3, approot)
-// }
-
-// counterfunc();
+ReactDOM.render(React.createElement(IndecessionApp, null), document.getElementById("app"));
