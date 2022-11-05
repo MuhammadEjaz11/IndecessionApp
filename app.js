@@ -1,6 +1,11 @@
-console.log('sdaddsadadaadsdasdsa')
+console.log('ejaz 1')
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Addoptions from './components/Addoptions';
+import Header from './components/Header';
+import Action from './components/Action';
+import Option from './components/option';
+import Options from './components/options';
 
 class IndecessionApp extends React.Component {
     constructor(props){
@@ -81,74 +86,14 @@ class IndecessionApp extends React.Component {
 }
 
 
-const Header =(props)=>{
-    return (
-        <div>
-            <h1>{props.title}</h1>
-            <h2>{props.subtitle}</h2>
-        </div>
-    )
-}
 
 
-const Action = (props)=>{
-    return (
-        <div>
-            <button onClick={props.handPick} disabled={!props.option}>What Should I do?</button>
-        </div>
-    )
-}
 
 
-const Options = (props)=>{
-    return (
-        <div>
-            <button onClick={props.removeAll}>Remove All</button>
-            <h3>Options are here</h3>
-            <h3>{props.option.map((option)=>{
-                return (
-                <p key={option}>{option} <button onClick={(_e)=>{props.removeItem(option)}}>Remove</button></p>
-                )})}</h3>
-            <Option/>
-        </div>
-    )
-}
 
-const Option = ()=>{
-    return (
-        <div>
-            <h3>Option component are here</h3>
-            
-        </div>
-    )
-}
-class Addoptions extends React.Component {
-    constructor(props){
-        super(props)
-        this.handleAddoption = this.handleAddoption.bind(this);
 
-    }
-    handleAddoption(e){
-        e.preventDefault();
-        const value = e.target.elements.options.value.trim();
-        if(value){
-            this.props.addoption(value);
-            e.target.elements.options.value=""
-        }else{
-            alert("Please Enter the Valid Value")
-        }
-    }
-    render() {
-        return (
-            <div>
-                <form action="" onSubmit={this.handleAddoption}>
-                <input name="options"type="text" placeholder="Add Your Options here " /> <button>Add Option</button>
 
-                </form>
-            </div>
-        )
-    }
-}
+
 
 
 ReactDOM.render(<IndecessionApp/>, document.getElementById("app"))
