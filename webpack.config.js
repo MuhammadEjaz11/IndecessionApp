@@ -15,6 +15,13 @@ module.exports = {
         
         }],
     },
-    devtool: 'eval-cheap-module-source-map'
+    devtool: 'eval-cheap-module-source-map',
+    devServer:{
+        allowedHosts: 'all',
+        static: {
+            directory: __dirname,
+          },
+    },
+    mode: 'development',
 
 }
