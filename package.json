@@ -3,7 +3,7 @@
     "serve": "live-server ./",
     "build-babel": "babel src/ind.jsx --out-file=script/app.js --presets=env,react",
     "build": "webpack",
-    "dev-server":"webpack-dev-server"
+    "dev-server": "webpack-dev-server"
   },
   "dependencies": {
     "@babel/preset-env": "^7.19.4",
@@ -16,6 +16,7 @@
     "live-server": "^1.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
     "webpack": "^5.74.0",
     "webpack-dev-server": "^4.11.1"
   },

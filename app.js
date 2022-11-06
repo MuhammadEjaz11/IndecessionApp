@@ -1,4 +1,4 @@
-console.log('ejaz 1')
+console.log('ejaz 2')
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Addoptions from './components/Addoptions';
@@ -6,28 +6,34 @@ import Header from './components/Header';
 import Action from './components/Action';
 import Option from './components/option';
 import Options from './components/options';
+import OptModal from './components/modal';
 
 class IndecessionApp extends React.Component {
-    constructor(props){
-        super(props)
-        this.handlepick = this.handlepick.bind(this);
-        this.removeAll = this.removeAll.bind(this);
-        this.addoption = this.addoption.bind(this);
-        this.removeItem = this.removeItem.bind(this);
-        this.state ={
-            options: []
-        }
+    state = {
+        options: [],
+        modalOpt: undefined
     }
-    handlepick(){
+    closeModal = ()=>{
+        this.setState(()=>{
+            return {modalOpt: undefined}
+        })
+    }
+   
+    handlepick = ()=>{
         let number = Math.floor(Math.random() * this.state.options.length);
-        alert(this.state.options[number])
+        // alert(this.state.options[number])
+        const opt = this.state.options[number];
+        
+        this.setState(()=>{
+            return {modalOpt: opt}
+        })
     }
-    removeAll(){
+    removeAll = ()=>{
         this.setState(()=>{
             return {options:[]}
         })
     }
-    addoption(value){
+    addoption = (value)=>{
         if(this.state.options.indexOf(value)>-1){
             return(alert("This options is Already Exist"))
         }
@@ -37,7 +43,7 @@ class IndecessionApp extends React.Component {
             }
         })
     }
-    removeItem(removeValue){
+    removeItem = (removeValue)=>{
         
         this.setState((prevState)=>{
             return{
@@ -79,6 +85,8 @@ class IndecessionApp extends React.Component {
                 <Action handPick={this.handlepick}  option={this.state.options.length}/>
                 <Options removeItem={this.removeItem} removeAll={this.removeAll} option={this.state.options} />
                 <Addoptions addoption={this.addoption} />
+                <OptModal modalOpt={this.state.modalOpt} closeModal={this.closeModal} />
+                
 
             </div>
         )
