@@ -7,6 +7,7 @@ import Action from './components/Action';
 import Option from './components/option';
 import Options from './components/options';
 import OptModal from './components/modal';
+import './Style/style.scss'
 
 class IndecessionApp extends React.Component {
     state = {

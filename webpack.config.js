@@ -12,15 +12,23 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
-        
+
+        },
+        {
+            test: /\.scss$/,
+            use:[
+                'style-loader',
+                'css-loader',
+                'sass-loader'
+            ]
         }],
     },
     devtool: 'eval-cheap-module-source-map',
-    devServer:{
+    devServer: {
         allowedHosts: 'all',
         static: {
             directory: __dirname,
-          },
+        },
     },
     mode: 'development',
 
