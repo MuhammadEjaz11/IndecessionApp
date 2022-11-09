@@ -1,9 +1,11 @@
 .header{
-    background-color: rgb(26, 0, 85);
+    background-color: $main-color;
+    padding: $s-size 0;
+    margin-bottom: $l-size;
 }
 .header__title{
     color: white;
 }
 .header__subtitle{
-    color: rgb(138, 138, 138);
+    color: $second-color;
 }

@@ -1,16 +1,34 @@
 import React from "react"
 import Option from "./option"
 
-const Options = (props)=>{
+const Options = (props) => {
     return (
         <div>
-            <button onClick={props.removeAll}>Remove All</button>
-            <h3>Options are here</h3>
-            <h3>{props.option.map((option)=>{
-                return (
-                <p key={option}>{option} <button onClick={(_e)=>{props.removeItem(option)}}>Remove</button></p>
-                )})}</h3>
-            <Option/>
+
+            <div className="widget-header">
+
+                <h3>Your Options</h3>
+                <button
+                    className="button"
+                    onClick={props.removeAll}
+                >
+                    Remove All
+                </button>
+            </div>
+            <div className="widget">
+
+                <h3>{props.option.map((option) => {
+                    return (
+                        <div className="widget-sec">
+                        
+                        <p key={option}>{option} </p>
+                        <button className="button--link" onClick={(_e) => { props.removeItem(option) }}>Remove</button>
+                        </div>
+                    )
+                })}
+                </h3>
+                {/* <Option /> */}
+            </div>
         </div>
     )
 }

@@ -18,9 +18,9 @@ class Addoptions extends React.Component {
     }
     render() {
         return (
-            <div>
-                <form action="" onSubmit={this.handleAddoption}>
-                <input name="options"type="text" placeholder="Add Your Options here " /> <button>Add Option</button>
+            <div className="addoptn">
+                <form action="" onSubmit={this.handleAddoption} className='addoptn-form'>
+                <input className="addoptn-input" name="options"type="text" placeholder="Add Your Options here " /> <button className="button--link">Add Option</button>
 
                 </form>
             </div>
