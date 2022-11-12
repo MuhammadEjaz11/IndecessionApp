@@ -17,10 +17,10 @@ const Options = (props) => {
             </div>
             <div className="widget">
 
-                <h3>{props.option.map((option) => {
+                <h3>{props.option.map((option, index) => {
                     return (
                         <div className="widget-sec">
-                        <div className="widget-p"><p key={option}>{option} </p></div>
+                        <div className="widget-p"><p key={option}>{index +1}. {option} </p></div>
                         
                         <button className="button--link" onClick={(_e) => { props.removeItem(option) }}>Remove</button>
                         </div>
