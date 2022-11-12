@@ -3,6 +3,7 @@
     padding: $s-size 0;
     text-align: center;
     padding: $s-size;
+    word-break: break-all;
     
 }
 .widget-sec{
@@ -22,4 +23,7 @@
     h3{
         color: rgb(173, 173, 173);
     }
+}
+.widget-p{
+    width: 50rem;
 }

@@ -6,10 +6,11 @@ const OptModal = (props) => (
     isOpen = {props.modalOpt}
     contentLabel = "Selected Option"
     onRequestClose={props.closeModal}
+    className='modal'
     >
-        <h3>Some Modal</h3>
-        {props.modalOpt && <p>{props.modalOpt}</p>}
-        <button onClick={props.closeModal}>Okay</button>
+        <h3 className="modal_title">Selected Options</h3>
+        {props.modalOpt && <p className="modal_option">{props.modalOpt}</p>}
+        <button className="button--link" onClick={props.closeModal}>Okay</button>
         
     </Modal>
 )

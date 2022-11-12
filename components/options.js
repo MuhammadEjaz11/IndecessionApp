@@ -20,8 +20,8 @@ const Options = (props) => {
                 <h3>{props.option.map((option) => {
                     return (
                         <div className="widget-sec">
+                        <div className="widget-p"><p key={option}>{option} </p></div>
                         
-                        <p key={option}>{option} </p>
                         <button className="button--link" onClick={(_e) => { props.removeItem(option) }}>Remove</button>
                         </div>
                     )
